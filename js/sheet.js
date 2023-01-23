@@ -26,6 +26,9 @@ content.addEventListener(
   (e) => text_in.removeAttribute("id"),
   text_in.setAttribute("class", "v_txt")
 );
+content.ondblclick = () => {
+  text_in.setAttribute("id", "txt");
+};
 function bt() {
   n = prompt("td?");
   let del = document.getElementById("del");
@@ -40,3 +43,25 @@ function bt() {
     }
   }
 }
+let b_save = document.querySelector("#save");
+b_save.onclick = () => {
+  let c_tbl = document.querySelector("table").innerHTML;
+  let win = window.open("", "", "height=700,width=700");
+  let style = "<style>";
+  style += "table {width: 100%;font: 17px Calibri;}";
+  style += "table, tr, td {border: solid 1px #DDD; border-radius: 10px;;";
+  style += "padding: 2px 3px;text-align: center;}";
+  style += "td{ width: 50px;height: 50px}";
+  style += "</style>";
+  win.document.write("<html><head>");
+  win.document.write("<title>Your sheet</title>");
+  win.document.write(style);
+  win.document.write("</head>");
+  win.document.write("<body><table>");
+  win.document.write(c_tbl);
+  win.document.write("</table></body></html>");
+
+  win.document.close();
+
+  win.print();
+};
